@@ -1,0 +1,21 @@
+# Genera el instalador .exe de Windows en la nube. Se ejecuta a mano (botón "Run workflow").
+name: Crear instalador .exe de Windows
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm run dist
+      - uses: actions/upload-artifact@v4
+        with:
+          name: instalador-windows
+          path: dist/*.exe
+          if-no-files-found: error

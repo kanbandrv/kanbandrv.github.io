@@ -1,0 +1,34 @@
+{
+  "name": "tablero-kanban-obra",
+  "version": "1.0.0",
+  "description": "Tablero Kanban para seguimiento de tareas y comités de obra",
+  "author": "GISAICO",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win --publish never"
+  },
+  "devDependencies": {
+    "electron": "^44.7.0",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "co.gisaico.kanbanobra",
+    "productName": "Tablero Kanban de Obra",
+    "directories": { "output": "dist", "buildResources": "build" },
+    "files": ["main.js", "www/**/*", "build/icon.ico", "package.json"],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [{ "target": "nsis", "arch": ["x64"] }]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Tablero Kanban de Obra",
+      "artifactName": "Tablero-Kanban-Obra-Instalador-${version}.${ext}"
+    }
+  }
+}
